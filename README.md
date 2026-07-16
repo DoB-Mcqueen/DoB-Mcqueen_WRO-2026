@@ -23,8 +23,7 @@ This repository contains our complete project documentation, including source co
   <tr>
     <!-- Member 1: Ahnaf Safwan Islam -->
     <td align="center" width="220" style="padding-right: 30px;">
-      <img src="<img width="480" height="479" alt="ahnaf formal" src="https://github.com/user-attachments/assets/9e4cd1ac-025f-4a5a-bea1-484f1ed9a065" />
-" alt="Ahnaf Safwan Islam" width="130" height="130" style="border-radius: 50%; object-fit: cover;">
+      <img src="ahnaf.jpg" alt="Ahnaf Safwan Islam" width="130" height="130" style="border-radius: 50%; object-fit: cover;">
       <br />
       <strong>Ahnaf Safwan Islam</strong>
       <br />
