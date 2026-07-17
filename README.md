@@ -12,6 +12,7 @@ This repository contains our complete project documentation, including source co
 * [Team Introduction](#team-introduction)
 * [About Dreams of Bangladesh](#about-dreams-of-bangladesh)
 * [About WRO](#about-wro)
+* [Repository Overciew](#repository-overview)
 * [FE Mission Overview](#fe-mission-overview)
 * [Key Features](#key-features)
 * [Component and Hardware](#component-and-hardware)
@@ -75,3 +76,127 @@ We design and develop real-world engineering solutions focused on education, sus
 
 ---
 📞 *For collaboration, sponsorship, or partnership: contact us via our website.*
+
+# About WRO
+
+
+> **World Robot Olympiad (WRO) Future Engineers (FE)** is an advanced, high-tier robotics category designed for top-tier student engineers. The competition challenges teams to design, build, and program fully autonomous self-driving vehicles from scratch, simulating real-world engineering and autonomous vehicle development cycles.
+
+###  Competition Framework
+
+| Team Dynamics | Technical Freedom |
+| :--- | :--- |
+| **Age Limit:** 14 – 22 years old <br> **Team Size:** 2 to 3 students <br> **Mentorship:** 1 Official Coach | **Hardware:** Open choice (Arduino, Raspberry Pi, ESP32, etc.) <br> **Software:** Open choice (Python, C++, ROS, OpenCV, etc.) <br> **Materials:** No platform restrictions |
+
+---
+
+
+###  Core Pillars of the Challenge
+
+<table>
+  <tr>
+    <td align="center" width="30%">
+       <strong>1. Autonomous Driving</strong><br>
+      <sub>Steering & Navigation</sub>
+    </td>
+    <td align="center" width="5%">➔</td>
+    <td align="center" width="30%">
+       <strong>2. Computer Vision</strong><br>
+      <sub>LiDAR & Obstacle Tracking</sub>
+    </td>
+    <td align="center" width="5%">➔</td>
+    <td align="center" width="30%">
+       <strong>3. Engineering Lifecycle</strong><br>
+      <sub>Full Documentation & Github</sub>
+    </td>
+  </tr>
+</table>
+
+####  Autonomous Track Navigation
+Teams must engineer a scale vehicle equipped with a mechanical, functional steering system. The robot must dynamically read, navigate, and self-correct through a complex track circuit completely autonomously.
+
+####  Sensor Fusion & Vision
+Vehicles rely heavily on cutting-edge control algorithms, computer vision tracking (like color or lane detection), and time-of-flight sensors (LiDAR/Ultrasonic) to map paths and dodge track obstacles in real-time.
+
+####  Industry-Standard Documentation
+Unlike basic coding challenges, teams are strictly evaluated on their engineering workflow. You must thoroughly document your engineering iterations, 3D CAD modeling design choices, and code architecture—treating the project like a true industrial development cycle.
+
+
+
+
+# FE Mission Overview
+
+### Round 1: Navigation Challenge
+
+The robot must autonomously complete three laps on a pre-defined track. The goal of this round is for the bot to demonstrate stable navigation and precise lap tracking without any obstacle avoidance requirements.
+
+* **Objective:** Complete three laps on the track within the allotted time.
+* **Key Tasks:** Accurate path-following, speed control, and lap counting.
+
+<br>
+<img src="PASTE_ROUND_1_IMAGE_LINK_HERE" alt="WRO FE Round 1 Layout" width="100%" style="max-height: 400px; object-fit: cover; border-radius: 6px; border: 1px solid #30363d;">
+<br>
+
+---
+
+### Round 2: Obstacle Avoidance & Parking
+
+The bot must complete three laps while avoiding dynamic colored obstacles placed along the circuit. After completing the final lap, the vehicle must execute a precision stop within the designated end zone.
+
+* **Green Obstacles:** The bot should move left to avoid.
+* **Red Obstacles:** The bot should move right to avoid.
+* **Objective:** Complete three laps, avoid obstacles, and park in the designated area.
+* **Tasks:** Obstacle detection, color-based avoidance, and precision parking.
+
+<br>
+<img src="PASTE_ROUND_2_IMAGE_LINK_HERE" alt="WRO FE Round 2 Layout" width="100%" style="max-height: 400px; object-fit: cover; border-radius: 6px; border: 1px solid #30363d;">
+      <br />
+
+
+
+
+
+# Key Features
+
+The structural layout and computing architecture of DoB McQueen are engineered to maximize performance consistency across dynamic competition environments.
+
+<table width="100%">
+  <!-- Feature 1 & 2 Row -->
+  <tr>
+    <td width="50%" valign="top" style="padding: 15px; border-right: 1px solid #30363d;">
+      <h4>Simple but Standard Mechanical Design</h4>
+      <p>Every structural subsystem is engineered with a strict focus on mechanical reliability. Optimized component placement lowers the vehicle's center of gravity, minimizing inertia during high-speed turns and ensuring consistent physical execution on the track circuit.</p>
+    </td>
+    <td width="50%" valign="top" style="padding: 15px; background-color: #161b22;">
+      <h4> 3D Printed Chassis</h4>
+      <p>Leveraging proven structural design paradigms, the vehicle utilizes a hybrid layout strategy. Combining the immediate manufacturing precision of standard custom-engineered 3D printed components achieves optimal rigidity and geometric flexibility.</p>
+    </td>
+  </tr>
+
+  <!-- Feature 3 & 4 Row -->
+  <tr>
+    <td width="50%" valign="top" style="padding: 15px; background-color: #161b22; border-right: 1px solid #30363d;">
+      <h4>High-Fidelity Image Processing System</h4>
+      <p>The onboard vision system utilizes optimized edge-computing pipelines to achieve low-latency environmental detection. This configuration enables the vehicle to instantly detect track boundaries and execute color-based navigation decisions under varying ambient light profiles.</p>
+    </td>
+    <td width="50%" valign="top" style="padding: 15px;">
+      <h4>Advanced Sensor Suite Integration</h4>
+      <p>Equipped with high-frequency LiDAR for 360-degree boundary mapping, precision encoder motors for linear distance calculation, and an onboard Inertial Measurement Unit (IMU) to monitor real-time angular heading and orientation changes.</p>
+    </td>
+  </tr>
+
+  <!-- Feature 5 & 6 Row -->
+  <tr>
+    <td width="50%" valign="top" style="padding: 15px; border-right: 1px solid #30363d;">
+      <h4>Robot Operating System Framework (ROS2)</h4>
+      <p>The core software stack is built natively around ROS2. This design choice enforces complete modular separation between sensing and execution nodes, providing powerful telemetry logging, node communication protection, and reliable visualization tools.</p>
+    </td>
+    <td width="50%" valign="top" style="padding: 15px; background-color: #161b22;">
+      <h4>Real-Time Odometry Calculation</h4>
+      <p>By implementing real-time data fusion, the navigation stack combines raw data streams from the onboard IMU and drive wheel encoders. This allows the vehicle to maintain accurate spatial positioning records across successive lap runs.</p>
+    </td>
+  </tr>
+
+
+  
+
