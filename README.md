@@ -122,7 +122,34 @@ Vehicles rely heavily on cutting-edge control algorithms, computer vision tracki
 Unlike basic coding challenges, teams are strictly evaluated on their engineering workflow. You must thoroughly document your engineering iterations, 3D CAD modeling design choices, and code architecture—treating the project like a true industrial development cycle.
 
 
+# Repository Overview
 
+This repository includes all files, designs, and code for DoB McQueen, our WRO 2025 robot.
+
+<table>
+  <tr>
+    <!-- Left Column: Interactive File Structure Links -->
+    <td width="65%" valign="top">
+      <h3>File Structure</h3>
+      <p>Here’s a breakdown of the project folders within the repository:</p>
+      <ul>
+        <li><strong><a href="./Asset">Asset</a>:</strong> Contains all the images used in the README files of this repository.</li>
+        <li><strong><a href="./Dreams%20of%20Bangladesh">Dreams of Bangladesh</a>:</strong> Overview material, documentation, and assets regarding our parent organization.</li>
+        <li><strong><a href="./Instructions">Instructions</a>:</strong> Contains all the instructions on how to setup and use the package.</li>
+        <li><strong><a href="./Mentor's%20Statement">Mentor's Statement</a>:</strong> Endorsement records and guidance documentation provided by our team coach.</li>
+        <li><strong><a href="./Models">Models</a>:</strong> Contains 3D models and CAD designs of the robot.</li>
+        <li><strong><a href="./Old%20vs%20New">Old vs New</a>:</strong> Iteration logs and structural comparisons between previous prototypes and the current build.</li>
+        <li><strong><a href="./Review">Review</a>:</strong> Performance evaluations, testing data matrices, and design critique feedback.</li>
+        <li><strong><a href="./T-Photos">T-Photos</a>:</strong> Technical images of the robot build.</li>
+        <li><strong><a href="./Team%20Member's%20Statement">Team Member's Statement</a>:</strong> Documentation containing official structural records and engineering statements from each team member.</li>
+        <li><strong><a href="./V-Photos">V-Photos</a>:</strong> Visual photos for aesthetics and showcasing.</li>
+        <li><strong><a href="./Videos">Videos</a>:</strong> Performance and demo videos of DoB McQueen.</li>
+        <li><strong><a href="./src">src</a>:</strong> Source code for the robot's programming. This contains the ROS2 packages.</li>
+      </ul>
+    </td>
+  </tr>
+</table
+  
 
 # FE Mission Overview
 
