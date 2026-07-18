@@ -121,15 +121,13 @@ Vehicles rely heavily on cutting-edge control algorithms, computer vision tracki
 ####  Industry-Standard Documentation
 Unlike basic coding challenges, teams are strictly evaluated on their engineering workflow. You must thoroughly document your engineering iterations, 3D CAD modeling design choices, and code architecture—treating the project like a true industrial development cycle.
 
-
 # Repository Overview
 
 This repository includes all files, designs, and code for DoB McQueen, our WRO 2025 robot.
 
-<table>
+<table width="100%">
   <tr>
-    <!-- Left Column: Interactive File Structure Links -->
-    <td width="65%" valign="top">
+    <td valign="top" style="padding: 15px;">
       <h3>File Structure</h3>
       <p>Here’s a breakdown of the project folders within the repository:</p>
       <ul>
@@ -148,7 +146,7 @@ This repository includes all files, designs, and code for DoB McQueen, our WRO 2
       </ul>
     </td>
   </tr>
-</table
+</table>
   
 
 # FE Mission Overview
