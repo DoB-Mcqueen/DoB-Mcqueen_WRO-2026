@@ -171,7 +171,7 @@ The robot must autonomously complete three laps on a pre-defined track. The goal
 * **Key Tasks:** Accurate path-following, speed control, and lap counting.
 
 <br>
-<img src="PASTE_ROUND_1_IMAGE_LINK_HERE" alt="WRO FE Round 1 Layout" width="100%" style="max-height: 400px; object-fit: cover; border-radius: 6px; border: 1px solid #30363d;">
+<img src="https://github.com/user-attachments/assets/4b90fdcd-cbcc-4caf-b120-4bc4c0a6a606" alt="WRO FE Round 1 Track Layout" width="100%" style="max-height: 400px; object-fit: cover; border-radius: 6px; border: 1px solid #30363d;">
 <br>
 
 ---
@@ -186,9 +186,8 @@ The bot must complete three laps while avoiding dynamic colored obstacles placed
 * **Tasks:** Obstacle detection, color-based avoidance, and precision parking.
 
 <br>
-<img src="PASTE_ROUND_2_IMAGE_LINK_HERE" alt="WRO FE Round 2 Layout" width="100%" style="max-height: 400px; object-fit: cover; border-radius: 6px; border: 1px solid #30363d;">
-      <br />
-
+<img src="https://github.com/user-attachments/assets/e23863b1-4b09-4752-bcfa-f042948f374f" alt="WRO FE Round 2 Track Layout" width="100%" style="max-height: 400px; object-fit: cover; border-radius: 6px; border: 1px solid #30363d;">
+<br>
 
 
 
