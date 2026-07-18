@@ -32,7 +32,7 @@ This repository contains our complete project documentation, including source co
     </td>
     <!-- Member 2: Al Amin Sani -->
     <td align="center" width="220" style="padding-right: 30px;">
-      <img src="PASTE_YOUR_COPIED_ALAMIN_LINK_HERE" alt="Al Amin Sani" width="130" height="130" style="border-radius: 50%; object-fit: cover;">
+      <img src="https://github.com/user-attachments/assets/5e03d710-feaf-4fe4-97b6-286c165e0a7d" alt="Al Amin Sani" width="130" height="130" style="border-radius: 50%; object-fit: cover;">
       <br />
       <strong>Al Amin Sani</strong>
       <br />
@@ -40,7 +40,7 @@ This repository contains our complete project documentation, including source co
     </td>
     <!-- Member 3: Mohammad Sifat -->
     <td align="center" width="220">
-      <img src="PASTE_YOUR_COPIED_SIFAT_LINK_HERE" alt="Mohammad Sifat" width="130" height="130" style="border-radius: 50%; object-fit: cover;">
+      <img src="https://github.com/user-attachments/assets/c41fb012-cda3-4aac-94ad-fcfa7d66c3fb" alt="Mohammad Sifat" width="130" height="130" style="border-radius: 50%; object-fit: cover;">
       <br />
       <strong>Mohammad Sifat</strong>
       <br />
