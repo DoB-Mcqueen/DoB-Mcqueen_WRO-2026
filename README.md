@@ -24,7 +24,7 @@ This repository contains our complete project documentation, including source co
   <tr>
     <!-- Member 1: Ahnaf Safwan Islam -->
     <td align="center" width="220" style="padding-right: 30px;">
-      <img src="https://github.com" alt="Ahnaf Safwan Islam" width="130" height="130" style="border-radius: 50%; object-fit: cover;">
+      <img src="https://github.com/user-attachments/assets/035c62a3-effd-4b9c-9dcd-5ef7229efd91" alt="Ahnaf Safwan Islam" width="130" height="130" style="border-radius: 50%; object-fit: cover;">
       <br />
       <strong>Ahnaf Safwan Islam</strong>
       <br />
@@ -32,7 +32,7 @@ This repository contains our complete project documentation, including source co
     </td>
     <!-- Member 2: Al Amin Sani -->
     <td align="center" width="220" style="padding-right: 30px;">
-      <img src="PASTE_ALAMIN_ISSUE_LINK_HERE" alt="Al Amin Sani" width="130" height="130" style="border-radius: 50%; object-fit: cover;">
+      <img src="PASTE_YOUR_COPIED_ALAMIN_LINK_HERE" alt="Al Amin Sani" width="130" height="130" style="border-radius: 50%; object-fit: cover;">
       <br />
       <strong>Al Amin Sani</strong>
       <br />
@@ -40,7 +40,7 @@ This repository contains our complete project documentation, including source co
     </td>
     <!-- Member 3: Mohammad Sifat -->
     <td align="center" width="220">
-      <img src="PASTE_SIFAT_ISSUE_LINK_HERE" alt="Mohammad Sifat" width="130" height="130" style="border-radius: 50%; object-fit: cover;">
+      <img src="PASTE_YOUR_COPIED_SIFAT_LINK_HERE" alt="Mohammad Sifat" width="130" height="130" style="border-radius: 50%; object-fit: cover;">
       <br />
       <strong>Mohammad Sifat</strong>
       <br />
