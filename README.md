@@ -50,24 +50,24 @@ This repository contains our complete project documentation, including source co
 </table>
 
 # About Dreams of Bangladesh
+
 <p align="center">
-  <img src="<img width="200 height="200" alt="image" src="https://github.com/user-attachments/assets/23dae382-d2a3-4fcd-b317-bb896d7bdf8c /
-" alt="Dreams of Bangladesh" width="100%" style="max-height: 400px; object-fit: cover; border-radius: 8px;"/>
+  <img src="https://github.com/user-attachments/assets/0ad98393-3a7f-4ec5-a675-5130f6215df6" alt="Dreams of Bangladesh Logo" width="300" height="300" style="object-fit: contain;">
 </p>
 
 Dreams of Bangladesh (DoB) is a youth-led innovation, research, and technology organization based in Bangladesh, working in Robotics, AI, IoT, Autonomous Vehicles (USV/AUV), and Space Technology. 
 
 We design and develop real-world engineering solutions focused on education, sustainability, safety, and humanitarian impact, empowering young innovators to compete and collaborate on national and international platforms. Through research, competitions, workshops, and partnerships, Dreams of Bangladesh is building a global future for Bangladeshi talent.
 
-###  Organization Profile
+### Organization Profile
 
-| **Attribute** | **Details** |
+| Attribute | Details |
 | :--- | :--- |
-|  **Website** | [www.dreamsofbangladesh.com](https://dreamsofbangladesh.com) |
-|  **Industry** | Robotics Engineering |
-|  **Company Size** | 2-10 employees |
-|  **Type** | Nonprofit |
-|  **Founded** | 2021 |
+| **Website** | [://dreamsofbangladesh.com](https://://dreamsofbangladesh.com) |
+| **Industry** | Robotics Engineering |
+| **Company Size** | 2-10 employees |
+| **Type** | Nonprofit |
+| **Founded** | 2021 |
 
 ### Core Specialties
 * **Robotics & Automation:** Autonomous Surface Vehicles (USV) & Autonomous Underwater Vehicles (AUV)
@@ -75,7 +75,7 @@ We design and develop real-world engineering solutions focused on education, sus
 * **Future Tech:** Space Technology, Research & Development, & STEM Education
 
 ---
-📞 *For collaboration, sponsorship, or partnership: contact us via our website.*
+*For collaboration, sponsorship, or partnership: contact us via our official website.*
 
 # About WRO
 
