@@ -89,7 +89,7 @@ We design and develop real-world engineering solutions focused on education, sus
     </td>
     <!-- Right Column: Logo in a Circular Frame -->
     <td width="30%" align="center" valign="middle" style="border: none;">
-      <img src="https://github.com/user-attachments/assets/0ad98393-3a7f-4ec5-a675-5130f6215df6" alt="WRO Logo" width="160" height="160" style="border-radius: 50%; object-fit: contain;">
+      <img src="https://github.com/user-attachments/assets/05aff371-9531-43eb-922a-c154a6229bba" alt="WRO Logo" width="160" height="160" style="border-radius: 50%; object-fit: contain;">
     </td>
   </tr>
 </table>
@@ -131,6 +131,7 @@ Vehicles rely heavily on cutting-edge control algorithms, computer vision tracki
 
 #### Industry-Standard Documentation
 Unlike basic coding challenges, teams are strictly evaluated on their engineering workflow. You must thoroughly document your engineering iterations, 3D CAD modeling design choices, and code architecture—treating the project like a true industrial development cycle.
+
 
 # Repository Overview
 
