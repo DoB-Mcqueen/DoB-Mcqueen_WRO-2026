@@ -79,10 +79,22 @@ We design and develop real-world engineering solutions focused on education, sus
 
 # About WRO
 
+<table width="100%" style="border: none;">
+  <tr style="border: none;">
+    <!-- Left Column: Short Definition Text -->
+    <td width="70%" valign="middle" style="border: none; padding-right: 20px;">
+      <blockquote>
+        <strong>World Robot Olympiad (WRO) Future Engineers (FE)</strong> is an advanced, high-tier robotics category designed for top-tier student engineers. The competition challenges teams to design, build, and program fully autonomous self-driving vehicles from scratch, simulating real-world engineering and autonomous vehicle development cycles.
+      </blockquote>
+    </td>
+    <!-- Right Column: Logo in a Circular Frame -->
+    <td width="30%" align="center" valign="middle" style="border: none;">
+      <img src="https://github.com/user-attachments/assets/0ad98393-3a7f-4ec5-a675-5130f6215df6" alt="WRO Logo" width="160" height="160" style="border-radius: 50%; object-fit: contain;">
+    </td>
+  </tr>
+</table>
 
-> **World Robot Olympiad (WRO) Future Engineers (FE)** is an advanced, high-tier robotics category designed for top-tier student engineers. The competition challenges teams to design, build, and program fully autonomous self-driving vehicles from scratch, simulating real-world engineering and autonomous vehicle development cycles.
-
-###  Competition Framework
+### Competition Framework
 
 | Team Dynamics | Technical Freedom |
 | :--- | :--- |
@@ -90,35 +102,34 @@ We design and develop real-world engineering solutions focused on education, sus
 
 ---
 
+### Core Pillars of the Challenge
 
-###  Core Pillars of the Challenge
-
-<table>
+<table width="100%">
   <tr>
     <td align="center" width="30%">
-       <strong>1. Autonomous Driving</strong><br>
+      <strong>1. Autonomous Driving</strong><br>
       <sub>Steering & Navigation</sub>
     </td>
     <td align="center" width="5%">➔</td>
     <td align="center" width="30%">
-       <strong>2. Computer Vision</strong><br>
+      <strong>2. Computer Vision</strong><br>
       <sub>LiDAR & Obstacle Tracking</sub>
     </td>
     <td align="center" width="5%">➔</td>
     <td align="center" width="30%">
-       <strong>3. Engineering Lifecycle</strong><br>
-      <sub>Full Documentation & Github</sub>
+      <strong>3. Engineering Lifecycle</strong><br>
+      <sub>Full Documentation & GitHub</sub>
     </td>
   </tr>
 </table>
 
-####  Autonomous Track Navigation
+#### Autonomous Track Navigation
 Teams must engineer a scale vehicle equipped with a mechanical, functional steering system. The robot must dynamically read, navigate, and self-correct through a complex track circuit completely autonomously.
 
-####  Sensor Fusion & Vision
+#### Sensor Fusion & Vision
 Vehicles rely heavily on cutting-edge control algorithms, computer vision tracking (like color or lane detection), and time-of-flight sensors (LiDAR/Ultrasonic) to map paths and dodge track obstacles in real-time.
 
-####  Industry-Standard Documentation
+#### Industry-Standard Documentation
 Unlike basic coding challenges, teams are strictly evaluated on their engineering workflow. You must thoroughly document your engineering iterations, 3D CAD modeling design choices, and code architecture—treating the project like a true industrial development cycle.
 
 # Repository Overview
