@@ -1,4 +1,4 @@
-WRO® IS FOR EVERYONE
+WRO IS FOR EVERYONE
 
 A global robotics competition open to all robot platforms.
 Compete with the robot you already have.
@@ -55,8 +55,16 @@ WRO is designed to allow schools to participate with existing hardware.
  
 
 CATEGORIES FOR EVERY SKILL LEVEL
-RoboMission
-RoboSports
-Future Innovators
-Future Engineers
+
+1) RoboMission
+
+2) RoboSports
+
+3) Future Innovators
+
+4) Future Engineers
+
 From beginners to advanced teams, there is a place for everyone.
+
+
+For more Detail visit: www.https://wro-association.org/
