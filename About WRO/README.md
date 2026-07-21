@@ -88,4 +88,4 @@ CATEGORIES FOR EVERY SKILL LEVEL
 From beginners to advanced teams, there is a place for everyone.
 
 
-For more Detail visit: www.https://wro-association.org/
+For more Details visit: www.https://wro-association.org/
