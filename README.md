@@ -242,15 +242,15 @@ Our bot is equipped with various components that support its autonomous function
 
 | Image | Component | Role / Function | Quantity |
 | :---: | :--- | :--- | :---: |
-| <img src="PASTE_SBC_IMAGE_LINK" width="80" alt="Raspberry Pi 5"> | **SBC** <br> Raspberry Pi 5 (8GB) | High-level computing, sensor processing, ROS2 execution, and central computing hub. | 1 |
-| <img src="PASTE_LIDAR_IMAGE_LINK" width="80" alt="Lidar"> | **Lidar** <br> 360 Degree Lidar | Environment scanning, 360-degree obstacle mapping, and distance safety checks. | 1 |
-| <img src="PASTE_CAMERA_IMAGE_LINK" width="80" alt="Camera"> | **Camera** <br> Raspberry Pi Camera Module 3 Wide | Wide-angle color tracking, track boundary detection, and computer vision node inputs. | 1 |
-| <img src="PASTE_MCU_IMAGE_LINK" width="80" alt="Raspberry Pi Pico"> | **Microcontroller** <br> Raspberry Pi Pico | Low-level hardware control, real-time motor actuation loops, and raw sensor polling. | 1 |
-| <img src="PASTE_CHASSIS_IMAGE_LINK" width="80" alt="Chassis"> | **Chassis** <br> Hybrid Structure | Hybrid structural platform engineered to house all electronics and mechanical assemblies. | 1 |
-| <img src="PASTE_TOF_IMAGE_LINK" width="80" alt="ToF Sensor"> | **ToF Sensor** <br> VL53L0X | Direct distance estimation and high-accuracy time-of-flight side obstacle mapping. | 2 |
-| <img src="PASTE_SERVO_IMAGE_LINK" width="80" alt="Servo"> | **Servo Motor** <br> MG90S | High-precision angular steering control for the front wheel articulation assembly. | 1 |
-| <img src="PASTE_MOTOR_IMAGE_LINK" width="80" alt="Drive Motor"> | **Drive Motor** <br> 16GA 12V Low RPM with Encoders | Reliable torque propulsion paired with direct wheel encoder ticks for real-time odometry. | 1 |
-| <img src="PASTE_DRIVER_IMAGE_LINK" width="80" alt="TB6612FNG"> | **Motor Driver** <br> TB6612FNG | Dual-channel H-bridge configuration providing efficient current control handling. | 1 |
-| <img src="PASTE_BATTERY_IMAGE_LINK" width="80" alt="Battery"> | **Battery Pack** <br> 2200mAh 3S LiPo | High-discharge core power reservoir driving autonomous electrical networks. | 1 |
-| <img src="PASTE_CONVERTER_IMAGE_LINK" width="80" alt="Buck Converter"> | **Buck Converter** <br> 5V 8A Buck Converter | Regulated clean power output stepped-down for sensitive logic microcontrollers. | 2 |
+| <img src="https://github.com/user-attachments/assets/8a5bafa7-5dce-4bf4-8beb-3ab204df4c2f" width="80" alt="Raspberry Pi 5"> | **SBC** <br> Raspberry Pi 5 (8GB) | High-level computing, sensor processing, ROS2 execution, and central computing hub. | 1 |
+| <img src="https://github.com/user-attachments/assets/3f8882a4-200b-4d51-839c-194a77638206" width="80" alt="Lidar"> | **Lidar** <br> 360 Degree Lidar | Environment scanning, 360-degree obstacle mapping, and distance safety checks. | 1 |
+| <img src="https://github.com/user-attachments/assets/90adf9ed-30e1-43b0-be55-04d5820a3326" width="80" alt="Camera"> | **Camera** <br> Raspberry Pi Camera Module 3 Wide | Wide-angle color tracking, track boundary detection, and computer vision node inputs. | 1 |
+| <img src="https://github.com/user-attachments/assets/4609b229-7fd6-473e-9218-da5fd3cf4da1" width="80" alt="Raspberry Pi Pico"> | **Microcontroller** <br> Raspberry Pi Pico | Low-level hardware control, real-time motor actuation loops, and raw sensor polling. | 1 |
+| <img src="https://github.com/user-attachments/assets/f0db31a0-b656-4599-87a8-e0d93ee5cf69" width="80" alt="ToF Sensor"> | **ToF Sensor** <br> VL53L0X | Direct distance estimation and high-accuracy time-of-flight side obstacle mapping. | 2 |
+| <img src="https://github.com/user-attachments/assets/fc0a0c54-d18e-4de0-b648-d59080dd1e4d" width="80" alt="Servo"> | **Servo Motor** <br> MG90S | High-precision angular steering control for the front wheel articulation assembly. | 1 |
+| <img src="https://github.com/user-attachments/assets/77db0987-a827-4f84-8459-1645a28c51f9" width="80" alt="Drive Motor"> | **Drive Motor** <br> 16GA 12V Low RPM with Encoders | Reliable torque propulsion paired with direct wheel encoder ticks for real-time odometry. | 2 |
+| <img src="https://github.com/user-attachments/assets/450153b1-489b-4f4a-93fa-3e510a4207cc" width="80" alt="TB6612FNG"> | **Motor Driver** <br> TB6612FNG | Dual-channel H-bridge configuration providing efficient current control handling. | 1 |
+| <img src="https://github.com/user-attachments/assets/9a20c611-e282-49d6-9f91-d350fc4817cb" width="80" alt="Battery"> | **Battery Pack** <br> 2200mAh 3S LiPo | High-discharge core power reservoir driving autonomous electrical networks. | 1 |
+| <img src="https://github.com/user-attachments/assets/6b1cec3f-d0ee-4075-9b85-bdc4eb2aa5d5" width="80" alt="Buck Converter"> | **Buck Converter** <br> 5V 8A Buck Converter | Regulated clean power output stepped-down for sensitive logic microcontrollers. | 2 |
 
+---
