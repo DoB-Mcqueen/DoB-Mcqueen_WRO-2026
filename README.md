@@ -232,7 +232,25 @@ The structural layout and computing architecture of DoB McQueen are engineered t
       <p>By implementing real-time data fusion, the navigation stack combines raw data streams from the onboard IMU and drive wheel encoders. This allows the vehicle to maintain accurate spatial positioning records across successive lap runs.</p>
     </td>
   </tr>
+</table>
 
+---
 
-  
+# Components and Hardware
+
+Our bot is equipped with various components that support its autonomous functionality. The table below summarizes each module with a concise role, function, and specific unit quantity.
+
+| Image | Component | Role / Function | Quantity |
+| :---: | :--- | :--- | :---: |
+| <img src="PASTE_SBC_IMAGE_LINK" width="80" alt="Raspberry Pi 5"> | **SBC** <br> Raspberry Pi 5 (8GB) | High-level computing, sensor processing, ROS2 execution, and central computing hub. | 1 |
+| <img src="PASTE_LIDAR_IMAGE_LINK" width="80" alt="Lidar"> | **Lidar** <br> 360 Degree Lidar | Environment scanning, 360-degree obstacle mapping, and distance safety checks. | 1 |
+| <img src="PASTE_CAMERA_IMAGE_LINK" width="80" alt="Camera"> | **Camera** <br> Raspberry Pi Camera Module 3 Wide | Wide-angle color tracking, track boundary detection, and computer vision node inputs. | 1 |
+| <img src="PASTE_MCU_IMAGE_LINK" width="80" alt="Raspberry Pi Pico"> | **Microcontroller** <br> Raspberry Pi Pico | Low-level hardware control, real-time motor actuation loops, and raw sensor polling. | 1 |
+| <img src="PASTE_CHASSIS_IMAGE_LINK" width="80" alt="Chassis"> | **Chassis** <br> Hybrid Structure | Hybrid structural platform engineered to house all electronics and mechanical assemblies. | 1 |
+| <img src="PASTE_TOF_IMAGE_LINK" width="80" alt="ToF Sensor"> | **ToF Sensor** <br> VL53L0X | Direct distance estimation and high-accuracy time-of-flight side obstacle mapping. | 2 |
+| <img src="PASTE_SERVO_IMAGE_LINK" width="80" alt="Servo"> | **Servo Motor** <br> MG90S | High-precision angular steering control for the front wheel articulation assembly. | 1 |
+| <img src="PASTE_MOTOR_IMAGE_LINK" width="80" alt="Drive Motor"> | **Drive Motor** <br> 16GA 12V Low RPM with Encoders | Reliable torque propulsion paired with direct wheel encoder ticks for real-time odometry. | 1 |
+| <img src="PASTE_DRIVER_IMAGE_LINK" width="80" alt="TB6612FNG"> | **Motor Driver** <br> TB6612FNG | Dual-channel H-bridge configuration providing efficient current control handling. | 1 |
+| <img src="PASTE_BATTERY_IMAGE_LINK" width="80" alt="Battery"> | **Battery Pack** <br> 2200mAh 3S LiPo | High-discharge core power reservoir driving autonomous electrical networks. | 1 |
+| <img src="PASTE_CONVERTER_IMAGE_LINK" width="80" alt="Buck Converter"> | **Buck Converter** <br> 5V 8A Buck Converter | Regulated clean power output stepped-down for sensitive logic microcontrollers. | 2 |
 
