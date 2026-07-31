@@ -15,7 +15,7 @@ This repository contains our complete project documentation, including source co
 * [Repository Overciew](#repository-overview)
 * [FE Mission Overview](#fe-mission-overview)
 * [Key Features](#key-features)
-* [Component and Hardware](#component-and-hardware)
+* [Components and Hardware](#component-and-hardware)
 * [Algorythm](#algorythm)
 * [Mission Run Flow](#mission-run-flow)
 
