@@ -256,3 +256,83 @@ Our bot is equipped with various components that support its autonomous function
 | <img src="https://github.com/user-attachments/assets/6b1cec3f-d0ee-4075-9b85-bdc4eb2aa5d5" width="80" alt="Buck Converter"> | **Buck Converter** <br> 5V 8A Buck Converter | Regulated clean power output stepped-down for sensitive logic microcontrollers. | 2 |
 
 ---
+
+# Mechanical System
+
+The physical chassis and mechanical drivetrains of DoB McQueen are engineered to maximize structural rigidity, balance wheel loads, and ensure kinematic steering accuracy during autonomous track operations.
+
+### 1. Custom Two-Tier 3D Printed Chassis
+
+The core structural platform is designed as a split-level component layout to separate raw power distribution from sensitive logic processing stacks.
+
+<table width="100%" style="border: none;">
+  <tr style="border: none;">
+    <!-- Left Column: First Floor Blueprint -->
+    <td width="50%" align="center" valign="top" style="border: none; padding-right: 15px;">
+      <h4>Chassis Lower Tier (First Floor)</h4>
+      <img src="https://github.com/user-attachments/assets/addf444d-b240-44a1-94a4-949e957740b7" alt="Chassis Lower Tier Design" width="100%" style="border-radius: 6px; border: 1px solid #30363d;">
+      <p align="left" style="font-size: 0.9em; color: #8b949e; padding-top: 10px;">
+        Houses heavy propulsion hardware including the drive motors, rear differential axle assembly, front Ackermann linkages, and the 3S LiPo battery core to establish a lower center of gravity.
+      </p>
+    </td>
+    <!-- Right Column: Second Floor Blueprint -->
+    <td width="50%" align="center" valign="top" style="border: none; padding-left: 15px;">
+      <h4>Chassis Upper Tier (Second Floor)</h4>
+      <img src="https://github.com/user-attachments/assets/be0a7c85-493d-4f77-9041-ccd38110c7e5" alt="Chassis Upper Tier Design" width="100%" style="border-radius: 6px; border: 1px solid #30363d;">
+      <p align="left" style="font-size: 0.9em; color: #8b949e; padding-top: 10px;">
+        Dedicated isolation plate hosting the primary computing systems. Secures the Raspberry Pi 5 single-board computer, the Raspberry Pi Pico controller, sensor routing shields, and buck converters away from mechanical drivetrain vibrations.
+      </p>
+    </td>
+  </tr>
+</table>
+
+---
+
+### 2. Ackermann Steering Mechanism
+
+To execute turning angles without tire scrubbing or losing kinematic traction, the front steering linkages adhere strictly to Ackermann geometry parameters.
+
+<table width="100%" style="border: none;">
+  <tr style="border: none;">
+    <!-- Left Column: Steering Base Geometry -->
+    <td width="50%" align="center" valign="top" style="border: none; padding-right: 15px;">
+      <h4>Steering Base Geometry</h4>
+      <img src="https://github.com/user-attachments/assets/179b755e-e64d-457b-9cd3-62a6706457bb" alt="Ackermann Steering Base Geometry" width="100%" style="border-radius: 6px; border: 1px solid #30363d;">
+    </td>
+    <!-- Right Column: Steering Linkage Kinematics -->
+    <td width="50%" align="center" valign="top" style="border: none; padding-left: 15px;">
+      <h4>Steering Linkage Kinematics</h4>
+      <img src="https://github.com/user-attachments/assets/f3638e55-296e-4e38-9c53-a4059975c696" alt="Ackermann Linkage Mechanical Diagram" width="100%" style="border-radius: 6px; border: 1px solid #30363d;">
+    </td>
+  </tr>
+</table>
+
+* **Kinematic Alignment:** Modulates individual front-wheel articulation angles dynamically relative to the curve radius, keeping the steering completely concentric.
+* **Actuation System:** Driven by a high-torque MG90S servo motor connecting rigid tie rods directly to the wheel hubs, removing mechanical backlash from the front axle steering track.
+
+---
+
+### 3. Differential Drivetrain Assembly
+
+The rear propulsion axle integrates a fully enclosed mechanical differential gear system driven by the 16GA 12V motor array.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9140ec60-411d-4510-bc1b-4b7a59cd8c6f" alt="Mechanical Differential Drivetrain Blueprint" width="60%" style="border-radius: 6px; border: 1px solid #30363d;">
+</p>
+
+* **Velocity Management:** Compensates for wheel speed discrepancies between the inside and outside wheels when navigating sharp corners.
+* **Traction Optimization:** Ensures uninterrupted power delivery to both wheels simultaneously, minimizing spinouts and promoting smooth acceleration transitions.
+
+---
+
+### 4. Rigid Camera Stand System
+
+The front vision node features an elevated, vibration-isolated tower mount custom-engineered for the Raspberry Pi Camera Module 3 Wide.
+* **Stable Field of View:** Structural geometry locks the camera lens at a fixed, downward pitch to maximize lane border and tower visibility.
+* **Frame Optimization:** Minimizes structural flex and motor-frequency harmonics to ensure unblurred data input into the image processing nodes.
+
+
+### 4. Rigid Camera Stand System
+The front vision node features an elevated, vibration-isolated tower mount custom-engineered for the Raspberry Pi Camera Module 3 Wide.
+*   **Stable Field of View:** Structural geometry locks the camera lens at a fixed, downward pitch to maximize lane border and tower visibility.
+*   **Frame Optimization:** Minimizes structural flex and motor-frequency harmonics to ensure unblurred data input into the image processing nodes.
