@@ -332,7 +332,3 @@ The front vision node features an elevated, vibration-isolated tower mount custo
 * **Frame Optimization:** Minimizes structural flex and motor-frequency harmonics to ensure unblurred data input into the image processing nodes.
 
 
-### 4. Rigid Camera Stand System
-The front vision node features an elevated, vibration-isolated tower mount custom-engineered for the Raspberry Pi Camera Module 3 Wide.
-*   **Stable Field of View:** Structural geometry locks the camera lens at a fixed, downward pitch to maximize lane border and tower visibility.
-*   **Frame Optimization:** Minimizes structural flex and motor-frequency harmonics to ensure unblurred data input into the image processing nodes.
