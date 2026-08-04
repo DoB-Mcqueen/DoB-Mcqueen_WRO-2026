@@ -455,3 +455,60 @@ The electrical network of DoB McQueen establishes a clean separation between hea
 The schematic drawings and structural electrical wiring map diagrams tracking our custom power traces, sensor data communication links, bus architectures, and hardware isolation planes will be uploaded below following final verification phases.
 
 *(Wiring diagrams and circuit schematics block pending deployment).*
+
+# Software Architecture
+
+The computational engine of DoB McQueen relies on a modular, decentralized Robot Operating System (ROS2) infrastructure. This allows our control, vision, and sensory nodes to execute independently and communicate via low-latency topic publish/subscribe pathways.
+
+
+### Core Processing Framework
+
+```mermaid
+graph LR
+    subgraph Sensing_Node [Sensing Layer]
+        A[Camera Data Stream]
+        B[360 Lidar Scans]
+    end
+
+    subgraph Processing_Node [Processing Engine]
+        C[Sensor Fusion Pipeline]
+        D[Edge Vision & Shape Tracking]
+    end
+
+    subgraph Actuation_Node [Actuation Layer]
+        E[Microcontroller Commands]
+        F[Steering & Throttle Execution]
+    end
+
+    A --> C
+    B --> D
+    C & D --> E
+    E --> F
+
+    %% Style Configurations for Formal Look
+    style Sensing_Node fill:#0d1117,stroke:#30363d,stroke-width:1px
+    style Processing_Node fill:#0d1117,stroke:#30363d,stroke-width:1px
+    style Actuation_Node fill:#0d1117,stroke:#30363d,stroke-width:1px
+    classDef default fill:#161b22,stroke:#30363d,stroke-width:1px,color:#c9d1d9;
+```
+#### Modular ROS2 Infrastructure
+By breaking down software functionalities into separate, specialized execution nodes, the navigation stack achieves exceptional reliability. A fault or lag spike in a high-level processing node (such as the camera node) remains isolated and will not compromise the real-time execution of critical, low-level emergency braking or steering loops.
+
+#### Real-Time Odometry and Sensor Fusion
+The vehicle maps its spatial position on the track circuit by combining raw velocity data from high-resolution wheel encoders with angular heading data from the onboard Inertial Measurement Unit (IMU). This continuous tracking pipeline handles critical vehicle logic, including track lap counting and exact parking execution scripts.
+
+#### Hybrid Tower Detection
+To maximize obstacle avoidance accuracy, the tracking pipeline relies on a two-stage hybrid sensor validation approach:
+1. **LiDAR Array:** Scans the surroundings to identify and isolate physical cluster shapes and distances.
+2. **Camera Vision Node:** Analyzes the target area to verify color profiles (Green vs. Red) and determine steering path updates.
+
+#### Simulation-Driven Development
+The control loops, sensor fusion algorithms, and vision nodes were developed and iterated inside a virtualized Gazebo simulation environment before deploying to physical hardware. This parallel tracking workspace minimized the risk of physical chassis damage during early development phases.
+
+---
+
+### Codebase Directory
+
+Detailed source implementations, node configurations, custom interfaces, and ROS2 build files are hosted natively within the repository.
+
+* Explore the full codebase directory directly inside the [src](./src) folder.
