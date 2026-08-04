@@ -17,7 +17,7 @@ This repository contains our complete project documentation, including source co
 * [Key Features](#key-features)
 * [Components and Hardware](#components-and-hardware)
 * [Mechanical System](#mechanical-system)
-* [Electrical System](#electrical-systtem)
+* [Electrical System](#electrical-system)
 * [Software System](#software-system)
 * [Mission Run Flow](#mission-run-flow)
 
