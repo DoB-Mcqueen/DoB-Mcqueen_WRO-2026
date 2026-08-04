@@ -456,7 +456,7 @@ The schematic drawings and structural electrical wiring map diagrams tracking ou
 
 *(Wiring diagrams and circuit schematics block pending deployment).*
 
-# Software Architecture
+# Software System
 
 The computational engine of DoB McQueen relies on a modular, decentralized Robot Operating System (ROS2) infrastructure. This allows our control, vision, and sensory nodes to execute independently and communicate via low-latency topic publish/subscribe pathways.
 
