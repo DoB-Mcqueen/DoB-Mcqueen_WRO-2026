@@ -332,3 +332,126 @@ The front vision node features an elevated, vibration-isolated tower mount custo
 * **Frame Optimization:** Minimizes structural flex and motor-frequency harmonics to ensure unblurred data input into the image processing nodes.
 
 
+# Electrical System
+
+The electrical network of DoB McQueen establishes a clean separation between heavy mechanical actuation currents and low-voltage computational logic buses to ensure noise immunity and structural reliability.
+
+<table width="100%" style="border: none;">
+  <!-- Component 1: Raspberry Pi 5 -->
+  <tr style="border: none;">
+    <td width="30%" align="center" valign="middle" style="border: none; padding: 15px;">
+      <img src="https://github.com/user-attachments/assets/8a5bafa7-5dce-4bf4-8beb-3ab204df4c2f" alt="Raspberry Pi 5 Core Compute" width="180" style="border-radius: 8px; border: 1px solid #30363d;">
+    </td>
+    <td width="70%" align="left" valign="middle" style="border: none; padding: 15px;">
+      <h3>Raspberry Pi 5 (8GB)</h3>
+      <p>Serves as the high-level computational core of the vehicle. It manages intensive edge-computing processes, runs the central ROS2 node network, decodes high-frequency sensor payloads, and executes real-time route path planning algorithms.</p>
+    </td>
+  </tr>
+
+  <!-- Component 2: 360 Lidar (Transition Right) -->
+  <tr style="border: none; background-color: #161b22;">
+    <td width="70%" align="right" valign="middle" style="border: none; padding: 15px;">
+      <h3>360 Degree Lidar Sensor</h3>
+      <p>The primary spatial mapping asset of the robot. It scans the track infrastructure at high frequencies, feeding continuous 2D distance array streams to the navigation subsystem to detect environmental boundaries and map dynamic obstacle coordinate frames.</p>
+    </td>
+    <td width="30%" align="center" valign="middle" style="border: none; padding: 15px;">
+      <img src="https://github.com/user-attachments/assets/3f8882a4-200b-4d51-839c-194a77638206" alt="360 Degree Lidar Sensor" width="180" style="border-radius: 8px; border: 1px solid #30363d;">
+    </td>
+  </tr>
+
+  <!-- Component 3: Raspberry Pi Camera Module 3 Wide -->
+  <tr style="border: none;">
+    <td width="30%" align="center" valign="middle" style="border: none; padding: 15px;">
+      <img src="https://github.com/user-attachments/assets/90adf9ed-30e1-43b0-be55-04d5820a3326" alt="Raspberry Pi Camera Module 3 Wide" width="180" style="border-radius: 8px; border: 1px solid #30363d;">
+    </td>
+    <td width="70%" align="left" valign="middle" style="border: none; padding: 15px;">
+      <h3>Raspberry Pi Camera Module 3 Wide</h3>
+      <p>The core optical computer vision input device. Its wide-angle lens allows the edge image-processing nodes to extract real-time color tracking points and spot lane markers and navigation towers under volatile lightning conditions.</p>
+    </td>
+  </tr>
+
+  <!-- Component 4: Raspberry Pi Pico (Transition Right) -->
+  <tr style="border: none; background-color: #161b22;">
+    <td width="70%" align="right" valign="middle" style="border: none; padding: 15px;">
+      <h3>Raspberry Pi Pico Microcontroller</h3>
+      <p>Acts as the dedicated real-time low-level processor. It interfaces directly with raw digital and analog hardware pins, parsing wheel encoder pulses, executing high-speed hardware control loop routines, and routing UART data streams to the SBC.</p>
+    </td>
+    <td width="30%" align="center" valign="middle" style="border: none; padding: 15px;">
+      <img src="https://github.com/user-attachments/assets/4609b229-7fd6-473e-9218-da5fd3cf4da1" alt="Raspberry Pi Pico Microcontroller" width="180" style="border-radius: 8px; border: 1px solid #30363d;">
+    </td>
+  </tr>
+
+  <!-- Component 5: ToF Sensor VL53L0X -->
+  <tr style="border: none;">
+    <td width="30%" align="center" valign="middle" style="border: none; padding: 15px;">
+      <img src="https://github.com/user-attachments/assets/f0db31a0-b656-4599-87a8-e0d93ee5cf69" alt="ToF Sensor VL53L0X" width="180" style="border-radius: 8px; border: 1px solid #30363d;">
+    </td>
+    <td width="70%" align="left" valign="middle" style="border: none; padding: 15px;">
+      <h3>ToF Proximity Sensor (VL53L0X)</h3>
+      <p>Utilizes time-of-flight light measurement to output highly linear distance approximations. These sensors map the immediate side boundaries of the vehicle, offering immediate feedback for localization corrections and wall clearance management.</p>
+    </td>
+  </tr>
+
+  <!-- Component 6: Servo Motor MG90S (Transition Right) -->
+  <tr style="border: none; background-color: #161b22;">
+    <td width="70%" align="right" valign="middle" style="border: none; padding: 15px;">
+      <h3>Servo Motor MG90S</h3>
+      <p>A high-torque metal-gear micro actuator that drives the steering mechanics. It converts numerical angular requests from the hardware control loops into precise physical tracking angles on the front wheels to execute turns cleanly.</p>
+    </td>
+    <td width="30%" align="center" valign="middle" style="border: none; padding: 15px;">
+      <img src="https://github.com/user-attachments/assets/fc0a0c54-d18e-4de0-b648-d59080dd1e4d" alt="Servo Motor MG90S" width="180" style="border-radius: 8px; border: 1px solid #30363d;">
+    </td>
+  </tr>
+
+  <!-- Component 7: Drive Motors with Encoders -->
+  <tr style="border: none;">
+    <td width="30%" align="center" valign="middle" style="border: none; padding: 15px;">
+      <img src="https://github.com/user-attachments/assets/77db0987-a827-4f84-8459-1645a28c51f9" alt="Drive Motor Array with Encoders" width="180" style="border-radius: 8px; border: 1px solid #30363d;">
+    </td>
+    <td width="70%" align="left" valign="middle" style="border: none; padding: 15px;">
+      <h3>16GA 12V Low RPM Motors with Encoders</h3>
+      <p>The prime operational propulsion element of the vehicle. Integrated quad-state quadrature magnetic encoders map individual shaft rotations directly to ensure dead-reckoning positional calculations remain synchronized.</p>
+    </td>
+  </tr>
+
+  <!-- Component 8: Motor Driver TB6612FNG (Transition Right) -->
+  <tr style="border: none; background-color: #161b22;">
+    <td width="70%" align="right" valign="middle" style="border: none; padding: 15px;">
+      <h3>Motor Driver TB6612FNG</h3>
+      <p>A high-efficiency dual MOSFET H-bridge driver. It provides smooth pulse-width modulation (PWM) speed actuation to the drive motors while insulating the low-power logic systems from inductive current feedback loops.</p>
+    </td>
+    <td width="30%" align="center" valign="middle" style="border: none; padding: 15px;">
+      <img src="https://github.com/user-attachments/assets/450153b1-489b-4f4a-93fa-3e510a4207cc" alt="Motor Driver TB6612FNG" width="180" style="border-radius: 8px; border: 1px solid #30363d;">
+    </td>
+  </tr>
+
+  <!-- Component 9: 2200mAh 3S LiPo Battery Pack -->
+  <tr style="border: none;">
+    <td width="30%" align="center" valign="middle" style="border: none; padding: 15px;">
+      <img src="https://github.com/user-attachments/assets/9a20c611-e282-49d6-9f91-d350fc4817cb" alt="3S LiPo Power Core" width="180" style="border-radius: 8px; border: 1px solid #30363d;">
+    </td>
+    <td width="70%" align="left" valign="middle" style="border: none; padding: 15px;">
+      <h3>2200mAh 3S LiPo Battery Pack</h3>
+      <p>The absolute primary electrical source. This high-discharge lithium-polymer cell grid offers continuous nominal current pipelines to keep both high-current actuators and computational logic rails fully saturated across consecutive lap sequences.</p>
+    </td>
+  </tr>
+
+  <!-- Component 10: 5V 8A Buck Converter (Transition Right) -->
+  <tr style="border: none; background-color: #161b22;">
+    <td width="70%" align="right" valign="middle" style="border: none; padding: 15px;">
+      <h3>5V 8A Buck Converter Array</h3>
+      <p>High-efficiency step-down switching regulators. They smoothly depress high LiPo power source currents into clean, heavily decoupled 5V supply rails dedicated entirely to securing stable operational voltages for our processing logic.</p>
+    </td>
+    <td width="30%" align="center" valign="middle" style="border: none; padding: 15px;">
+      <img src="https://github.com/user-attachments/assets/6b1cec3f-d0ee-4075-9b85-bdc4eb2aa5d5" alt="5V 8A Buck Converter Module" width="180" style="border-radius: 8px; border: 1px solid #30363d;">
+    </td>
+  </tr>
+</table>
+
+---
+
+## Circuit Design
+
+The schematic drawings and structural electrical wiring map diagrams tracking our custom power traces, sensor data communication links, bus architectures, and hardware isolation planes will be uploaded below following final verification phases.
+
+*(Wiring diagrams and circuit schematics block pending deployment).*
