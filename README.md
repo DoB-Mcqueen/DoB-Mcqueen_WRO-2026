@@ -15,8 +15,8 @@ This repository contains our complete project documentation, including source co
 * [Repository Overciew](#repository-overview)
 * [FE Mission Overview](#fe-mission-overview)
 * [Key Features](#key-features)
-* [Components and Hardware](#component-and-hardware)
-* [Mechanical System](#mechanical-system).
+* [Components and Hardware](#components-and-hardware)
+* [Mechanical System](#mechanical-system)
 * [Electrical System](#electrical-systtem)
 * [Software System](#software-system)
 * [Mission Run Flow](#mission-run-flow)
