@@ -12,7 +12,7 @@ This repository contains our complete project documentation, including source co
 * [Team Introduction](#team-introduction)
 * [About Dreams of Bangladesh](#about-dreams-of-bangladesh)
 * [About WRO](#about-wro)
-* [Repository Overciew](#repository-overview)
+* [Repository Overview](#repository-overview)
 * [FE Mission Overview](#fe-mission-overview)
 * [Key Features](#key-features)
 * [Components and Hardware](#components-and-hardware)
