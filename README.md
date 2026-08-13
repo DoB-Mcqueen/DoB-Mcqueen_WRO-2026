@@ -150,7 +150,6 @@ This repository includes all files, designs, and code for DoB McQueen, our WRO 2
         <li><strong><a href="./Instructions">Instructions</a>:</strong> Contains all the instructions on how to setup and use the package.</li>
         <li><strong><a href="./Mentor's%20Statement">Mentor's Statement</a>:</strong> Endorsement records and guidance documentation provided by our team coach.</li>
         <li><strong><a href="./Models">Models</a>:</strong> Contains 3D models and CAD designs of the robot.</li>
-        <li><strong><a href="./Old%20vs%20New">Old vs New</a>:</strong> Iteration logs and structural comparisons between previous prototypes and the current build.</li>
         <li><strong><a href="./Review">Review</a>:</strong> Performance evaluations, testing data matrices, and design critique feedback.</li>
         <li><strong><a href="./T-Photos">T-Photos</a>:</strong> Technical images of the robot build.</li>
         <li><strong><a href="./Team%20Member's%20Statement">Team Member's Statement</a>:</strong> Documentation containing official structural records and engineering statements from each team member.</li>
