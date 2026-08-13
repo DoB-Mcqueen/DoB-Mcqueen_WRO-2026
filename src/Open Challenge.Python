@@ -1,0 +1,1062 @@
+#!/usr/bin/env python3
+
+"""
+WRO Future Engineers 2026
+Open Challenge
+
+LiDAR Navigation
++ Independent Blue-Line Corner Counter
++ 3-Clear-Frame Cooldown
++ Lap Counter
++ Debug Video Recording
++ 1.5 Second Finish Drive
+"""
+
+import os
+import time
+
+import cv2
+import numpy as np
+
+from gpiozero.pins.lgpio import LGPIOFactory
+from gpiozero import Device
+from gpiozero import Servo, PWMOutputDevice
+
+import lidar_control
+
+
+# ============================================================
+# GPIO BACKEND
+# ============================================================
+
+Device.pin_factory = LGPIOFactory()
+
+
+# ============================================================
+# PINS
+# ============================================================
+
+RPWM_PIN = 18
+LPWM_PIN = 19
+SERVO_PIN = 17
+
+
+# ============================================================
+# MOTOR
+# ============================================================
+
+rpwm = PWMOutputDevice(
+    RPWM_PIN,
+    frequency=1000,
+    initial_value=0
+)
+
+lpwm = PWMOutputDevice(
+    LPWM_PIN,
+    frequency=1000,
+    initial_value=0
+)
+
+
+# ============================================================
+# SERVO
+# ============================================================
+
+servo = Servo(
+    SERVO_PIN,
+    min_pulse_width=0.0008,
+    max_pulse_width=0.0022,
+    frame_width=0.02
+)
+
+
+# ============================================================
+# STEERING CALIBRATION
+# ============================================================
+
+OLD_FULL_RANGE = 20.0
+REFERENCE_STEERING = 3.5
+
+REFERENCE_SERVO_MOVEMENT = (
+    REFERENCE_STEERING
+    /
+    OLD_FULL_RANGE
+)
+
+SERVO_CENTER_OFFSET = 0
+current_servo_value = SERVO_CENTER_OFFSET
+
+
+# ============================================================
+# SPEED
+# ============================================================
+
+STRAIGHT_SPEED = 0.40
+CORNER_SPEED = 0.30
+
+
+# ============================================================
+# FINISH
+# ============================================================
+
+FINISH_DRIVE_TIME = 1.5
+
+
+# ============================================================
+# LIDAR SETTINGS
+# ============================================================
+
+FRONT_ANGLE = 0
+LEFT_ANGLE = 315
+RIGHT_ANGLE = 45
+
+LIDAR_WINDOW = 6
+
+
+# ============================================================
+# CORNER NAVIGATION
+# ============================================================
+
+CORNER_TRIGGER_MM = 900
+CORNER_EXIT_MM = 1000
+SIDE_OPEN_DIFFERENCE_MM = 160
+
+
+# ============================================================
+# STEERING
+# ============================================================
+
+CORNER_STEER = 200
+MAX_CENTER_STEER = 120
+CENTER_DEADBAND_MM = 45
+CENTER_GAIN = 0.15
+
+
+# ============================================================
+# CAMERA
+# ============================================================
+
+CAMERA_INDEX = 0
+CAMERA_WIDTH = 640
+CAMERA_HEIGHT = 480
+CAMERA_FPS = 30
+
+
+# ============================================================
+# DISPLAY
+# ============================================================
+
+SHOW_CAMERA_FEED = True
+SHOW_BLUE_MASK = True
+
+
+# ============================================================
+# VIDEO RECORDING
+# ============================================================
+
+SAVE_DEBUG_VIDEO = True
+DEBUG_VIDEO_FOLDER = "debug_videos"
+DEBUG_VIDEO_FPS = 30.0
+
+
+# ============================================================
+# BLUE ROI
+# ============================================================
+
+BLUE_ROI_START = 0.40
+
+
+# ============================================================
+# BLUE COLOR
+# ============================================================
+
+BLUE_H_MIN = 84
+BLUE_H_MAX = 112
+
+BLUE_S_MIN = 55
+BLUE_S_MAX = 255
+
+BLUE_V_MIN = 55
+BLUE_V_MAX = 255
+
+
+# ============================================================
+# BLUE FILTER
+# ============================================================
+
+BLUE_MIN_AREA = 120
+BLUE_MIN_WIDTH = 12
+BLUE_MIN_HEIGHT = 2
+BLUE_MIN_TOTAL_PIXELS = 250
+
+
+# ============================================================
+# BLUE LINE STATE MACHINE
+# ============================================================
+
+BLUE_CLEAR_FRAMES = 3
+BLUE_CONFIRM_FRAMES = 1
+BLUE_TIME_COOLDOWN = 0.30
+
+
+# ============================================================
+# LAP COUNT
+# ============================================================
+
+CORNERS_PER_LAP = 4
+TARGET_LAPS = 3
+
+TARGET_CORNERS = (
+    CORNERS_PER_LAP
+    *
+    TARGET_LAPS
+)
+
+
+# ============================================================
+# LOOP
+# ============================================================
+
+LOOP_DELAY = 0.03
+
+
+# ============================================================
+# MOTOR FUNCTIONS
+# ============================================================
+
+def motor_forward(speed):
+    speed = max(
+        0.0,
+        min(
+            1.0,
+            float(speed)
+        )
+    )
+
+    rpwm.value = 0
+    lpwm.value = speed
+
+
+def motor_backward(speed):
+    speed = max(
+        0.0,
+        min(
+            1.0,
+            float(speed)
+        )
+    )
+
+    lpwm.value = 0
+    rpwm.value = speed
+
+
+def motor_stop():
+    rpwm.value = 0
+    lpwm.value = 0
+
+
+# ============================================================
+# STEERING
+# ============================================================
+
+def steer(direction, amount):
+    global current_servo_value
+
+    amount = max(
+        0.0,
+        float(amount)
+    )
+
+    movement = (
+        amount
+        /
+        100.0
+    ) * REFERENCE_SERVO_MOVEMENT
+
+    direction = direction.lower()
+
+    if (
+        direction == "straight"
+        or
+        amount == 0
+    ):
+        target = SERVO_CENTER_OFFSET
+
+    elif direction == "left":
+        target = (
+            SERVO_CENTER_OFFSET
+            -
+            movement
+        )
+
+    elif direction == "right":
+        target = (
+            SERVO_CENTER_OFFSET
+            +
+            movement
+        )
+
+    else:
+        raise ValueError(
+            "direction must be "
+            "'left', 'right', or 'straight'"
+        )
+
+    target = max(
+        -1.0,
+        min(
+            1.0,
+            target
+        )
+    )
+
+    servo.value = target
+    current_servo_value = target
+
+
+def straight():
+    steer(
+        "straight",
+        0
+    )
+
+
+# ============================================================
+# LIDAR
+# ============================================================
+
+def read_distances():
+    front = lidar_control.get_distance_at(
+        FRONT_ANGLE,
+        LIDAR_WINDOW
+    )
+
+    left = lidar_control.get_distance_at(
+        LEFT_ANGLE,
+        LIDAR_WINDOW
+    )
+
+    right = lidar_control.get_distance_at(
+        RIGHT_ANGLE,
+        LIDAR_WINDOW
+    )
+
+    return (
+        front,
+        left,
+        right
+    )
+
+
+# ============================================================
+# VALID DISTANCE
+# ============================================================
+
+def valid_distance(distance):
+    if distance is None:
+        return False
+
+    if distance < 50:
+        return False
+
+    if distance > 5000:
+        return False
+
+    return True
+
+
+# ============================================================
+# CORRIDOR FOLLOWING
+# ============================================================
+
+def follow_corridor(left, right):
+    if not valid_distance(left):
+        straight()
+        return
+
+    if not valid_distance(right):
+        straight()
+        return
+
+    difference = left - right
+
+    if abs(difference) < CENTER_DEADBAND_MM:
+        straight()
+        return
+
+    correction = abs(difference) * CENTER_GAIN
+
+    correction = min(
+        correction,
+        MAX_CENTER_STEER
+    )
+
+    if difference > 0:
+        steer(
+            "left",
+            correction
+        )
+    else:
+        steer(
+            "right",
+            correction
+        )
+
+
+# ============================================================
+# CAMERA
+# ============================================================
+
+def open_camera():
+    print()
+    print("======================================")
+    print(" STARTING CAMERA")
+    print("======================================")
+
+    camera = cv2.VideoCapture(
+        CAMERA_INDEX
+    )
+
+    if not camera.isOpened():
+        raise RuntimeError(
+            f"Could not open camera {CAMERA_INDEX}"
+        )
+
+    camera.set(
+        cv2.CAP_PROP_FRAME_WIDTH,
+        CAMERA_WIDTH
+    )
+
+    camera.set(
+        cv2.CAP_PROP_FRAME_HEIGHT,
+        CAMERA_HEIGHT
+    )
+
+    camera.set(
+        cv2.CAP_PROP_FPS,
+        CAMERA_FPS
+    )
+
+    camera.set(
+        cv2.CAP_PROP_BUFFERSIZE,
+        1
+    )
+
+    time.sleep(1.0)
+
+    ok, test_frame = camera.read()
+
+    if not ok or test_frame is None:
+        camera.release()
+
+        raise RuntimeError(
+            "Camera opened but did not return a frame."
+        )
+
+    height, width = test_frame.shape[:2]
+
+    print()
+    print(">>> CAMERA READY")
+    print(f">>> Resolution {width}x{height}")
+    print()
+
+    return (
+        camera,
+        width,
+        height
+    )
+
+
+# ============================================================
+# VIDEO WRITERS
+# ============================================================
+
+def create_video_writers(
+    frame_width,
+    frame_height,
+    mask_width,
+    mask_height
+):
+    if not SAVE_DEBUG_VIDEO:
+        return (
+            None,
+            None,
+            None,
+            None
+        )
+
+    os.makedirs(
+        DEBUG_VIDEO_FOLDER,
+        exist_ok=True
+    )
+
+    timestamp = time.strftime(
+        "%Y%m%d_%H%M%S"
+    )
+
+    drive_path = os.path.join(
+        DEBUG_VIDEO_FOLDER,
+        f"wro_drive_{timestamp}.mp4"
+    )
+
+    mask_path = os.path.join(
+        DEBUG_VIDEO_FOLDER,
+        f"wro_blue_mask_{timestamp}.mp4"
+    )
+
+    fourcc = cv2.VideoWriter_fourcc(
+        *"mp4v"
+    )
+
+    drive_writer = cv2.VideoWriter(
+        drive_path,
+        fourcc,
+        DEBUG_VIDEO_FPS,
+        (
+            frame_width,
+            frame_height
+        )
+    )
+
+    mask_writer = cv2.VideoWriter(
+        mask_path,
+        fourcc,
+        DEBUG_VIDEO_FPS,
+        (
+            mask_width,
+            mask_height
+        )
+    )
+
+    if not drive_writer.isOpened():
+        raise RuntimeError(
+            "Could not create drive debug video."
+        )
+
+    if not mask_writer.isOpened():
+        drive_writer.release()
+
+        raise RuntimeError(
+            "Could not create mask debug video."
+        )
+
+    return (
+        drive_writer,
+        mask_writer,
+        drive_path,
+        mask_path
+    )
+
+
+# ============================================================
+# BLUE DETECTION
+# ============================================================
+
+def detect_blue_line(frame):
+    frame_height, frame_width = frame.shape[:2]
+
+    roi_y = int(
+        frame_height
+        *
+        BLUE_ROI_START
+    )
+
+    roi = frame[
+        roi_y:frame_height,
+        0:frame_width
+    ]
+
+    blurred = cv2.GaussianBlur(
+        roi,
+        (3, 3),
+        0
+    )
+
+    hsv = cv2.cvtColor(
+        blurred,
+        cv2.COLOR_BGR2HSV
+    )
+
+    lower_blue = np.array(
+        [
+            BLUE_H_MIN,
+            BLUE_S_MIN,
+            BLUE_V_MIN
+        ],
+        dtype=np.uint8
+    )
+
+    upper_blue = np.array(
+        [
+            BLUE_H_MAX,
+            BLUE_S_MAX,
+            BLUE_V_MAX
+        ],
+        dtype=np.uint8
+    )
+
+    mask = cv2.inRange(
+        hsv,
+        lower_blue,
+        upper_blue
+    )
+
+    kernel = np.ones(
+        (3, 3),
+        dtype=np.uint8
+    )
+
+    mask = cv2.morphologyEx(
+        mask,
+        cv2.MORPH_CLOSE,
+        kernel,
+        iterations=2
+    )
+
+    mask = cv2.morphologyEx(
+        mask,
+        cv2.MORPH_OPEN,
+        kernel,
+        iterations=1
+    )
+
+    total_blue_pixels = cv2.countNonZero(
+        mask
+    )
+
+    contours, _ = cv2.findContours(
+        mask,
+        cv2.RETR_EXTERNAL,
+        cv2.CHAIN_APPROX_SIMPLE
+    )
+
+    valid_boxes = []
+    largest_area = 0
+
+    for contour in contours:
+        area = cv2.contourArea(
+            contour
+        )
+
+        if area < BLUE_MIN_AREA:
+            continue
+
+        x, y, w, h = cv2.boundingRect(
+            contour
+        )
+
+        if w < BLUE_MIN_WIDTH:
+            continue
+
+        if h < BLUE_MIN_HEIGHT:
+            continue
+
+        full_y = y + roi_y
+
+        valid_boxes.append(
+            (
+                x,
+                full_y,
+                w,
+                h,
+                area
+            )
+        )
+
+        if area > largest_area:
+            largest_area = area
+
+    contour_detected = len(valid_boxes) > 0
+
+    pixel_detected = (
+        total_blue_pixels
+        >=
+        BLUE_MIN_TOTAL_PIXELS
+    )
+
+    blue_detected = (
+        contour_detected
+        or
+        pixel_detected
+    )
+
+    return (
+        blue_detected,
+        valid_boxes,
+        largest_area,
+        total_blue_pixels,
+        mask,
+        roi_y
+    )
+
+
+# ============================================================
+# MAIN
+# ============================================================
+
+def main():
+    camera = None
+    drive_writer = None
+    mask_writer = None
+    drive_video_path = None
+    mask_video_path = None
+
+    corner_count = 0
+    lap_count = 0
+
+    try:
+        (
+            camera,
+            actual_width,
+            actual_height
+        ) = open_camera()
+
+        mask_height = (
+            actual_height
+            -
+            int(
+                actual_height
+                *
+                BLUE_ROI_START
+            )
+        )
+
+        mask_width = actual_width
+
+        (
+            drive_writer,
+            mask_writer,
+            drive_video_path,
+            mask_video_path
+        ) = create_video_writers(
+            actual_width,
+            actual_height,
+            mask_width,
+            mask_height
+        )
+
+        lidar_control.start()
+
+        straight()
+        time.sleep(0.5)
+
+        state = "STRAIGHT"
+        turn_direction = None
+
+        blue_line_active = False
+        blue_confirm_counter = 0
+        blue_clear_counter = 0
+        last_blue_count_time = 0.0
+
+        finish_started = False
+        finish_start_time = None
+
+        camera_failures = 0
+
+        motor_forward(
+            STRAIGHT_SPEED
+        )
+
+        while True:
+            now = time.time()
+
+            if finish_started:
+                finish_elapsed = (
+                    now
+                    -
+                    finish_start_time
+                )
+
+                finish_time_left = max(
+                    0.0,
+                    FINISH_DRIVE_TIME
+                    -
+                    finish_elapsed
+                )
+
+                if finish_elapsed >= FINISH_DRIVE_TIME:
+                    print("FINISH DRIVE COMPLETE")
+                    straight()
+                    motor_stop()
+                    break
+
+            else:
+                finish_time_left = FINISH_DRIVE_TIME
+
+            front, left, right = read_distances()
+
+            ok, frame = camera.read()
+
+            if not ok or frame is None:
+                camera_failures += 1
+
+                if camera_failures >= 20:
+                    print("Camera failed repeatedly.")
+                    break
+
+                time.sleep(0.02)
+                continue
+
+            camera_failures = 0
+
+            (
+                blue_detected,
+                valid_blue_boxes,
+                largest_blue_area,
+                total_blue_pixels,
+                blue_mask,
+                roi_y
+            ) = detect_blue_line(
+                frame
+            )
+
+            # ============================================
+            # BLUE COUNTING
+            # ============================================
+
+            if not finish_started:
+                if not blue_line_active:
+                    if blue_detected:
+                        blue_confirm_counter += 1
+
+                        if (
+                            blue_confirm_counter
+                            >=
+                            BLUE_CONFIRM_FRAMES
+                        ):
+                            cooldown_ok = (
+                                now
+                                -
+                                last_blue_count_time
+                                >=
+                                BLUE_TIME_COOLDOWN
+                            )
+
+                            if cooldown_ok:
+                                blue_line_active = True
+                                blue_clear_counter = 0
+                    else:
+                        blue_confirm_counter = 0
+
+                else:
+                    if blue_detected:
+                        blue_clear_counter = 0
+                    else:
+                        blue_clear_counter += 1
+
+                        if (
+                            blue_clear_counter
+                            >=
+                            BLUE_CLEAR_FRAMES
+                        ):
+                            corner_count += 1
+
+                            lap_count = (
+                                corner_count
+                                //
+                                CORNERS_PER_LAP
+                            )
+
+                            last_blue_count_time = now
+
+                            print(
+                                f"Corner {corner_count}/{TARGET_CORNERS}"
+                            )
+                            print(
+                                f"Lap {lap_count}/{TARGET_LAPS}"
+                            )
+
+                            blue_line_active = False
+                            blue_confirm_counter = 0
+                            blue_clear_counter = 0
+
+                            if corner_count >= TARGET_CORNERS:
+                                finish_started = True
+                                finish_start_time = time.time()
+
+            # ============================================
+            # NAVIGATION
+            # ============================================
+
+            if state == "STRAIGHT":
+                if (
+                    valid_distance(front)
+                    and
+                    front < CORNER_TRIGGER_MM
+                ):
+                    if (
+                        valid_distance(left)
+                        and
+                        valid_distance(right)
+                    ):
+                        side_difference = left - right
+
+                        if (
+                            side_difference
+                            >
+                            SIDE_OPEN_DIFFERENCE_MM
+                        ):
+                            state = "TURNING"
+                            turn_direction = "left"
+
+                            motor_forward(
+                                CORNER_SPEED
+                            )
+
+                            steer(
+                                "left",
+                                CORNER_STEER
+                            )
+
+                        elif (
+                            side_difference
+                            <
+                            -SIDE_OPEN_DIFFERENCE_MM
+                        ):
+                            state = "TURNING"
+                            turn_direction = "right"
+
+                            motor_forward(
+                                CORNER_SPEED
+                            )
+
+                            steer(
+                                "right",
+                                CORNER_STEER
+                            )
+
+                        else:
+                            follow_corridor(
+                                left,
+                                right
+                            )
+                    else:
+                        follow_corridor(
+                            left,
+                            right
+                        )
+                else:
+                    follow_corridor(
+                        left,
+                        right
+                    )
+
+            elif state == "TURNING":
+                steer(
+                    turn_direction,
+                    CORNER_STEER
+                )
+
+                if (
+                    valid_distance(front)
+                    and
+                    front > CORNER_EXIT_MM
+                ):
+                    straight()
+
+                    motor_forward(
+                        STRAIGHT_SPEED
+                    )
+
+                    turn_direction = None
+                    state = "STRAIGHT"
+
+            if SHOW_CAMERA_FEED:
+                cv2.imshow(
+                    "WRO LIVE CAMERA",
+                    frame
+                )
+
+            if SHOW_BLUE_MASK:
+                cv2.imshow(
+                    "WRO BLUE MASK",
+                    blue_mask
+                )
+
+            key = cv2.waitKey(1) & 0xFF
+
+            if (
+                key == ord("q")
+                or
+                key == ord("Q")
+            ):
+                break
+
+            time.sleep(
+                LOOP_DELAY
+            )
+
+    except KeyboardInterrupt:
+        print("CTRL+C - MANUAL STOP")
+
+    except Exception as error:
+        print("PROGRAM ERROR:")
+        print(error)
+
+    finally:
+        try:
+            motor_stop()
+        except Exception:
+            pass
+
+        try:
+            straight()
+            time.sleep(0.3)
+        except Exception:
+            pass
+
+        try:
+            lidar_control.stop()
+        except Exception:
+            pass
+
+        try:
+            if camera is not None:
+                camera.release()
+        except Exception:
+            pass
+
+        try:
+            if drive_writer is not None:
+                drive_writer.release()
+        except Exception:
+            pass
+
+        try:
+            if mask_writer is not None:
+                mask_writer.release()
+        except Exception:
+            pass
+
+        try:
+            cv2.destroyAllWindows()
+        except Exception:
+            pass
+
+        try:
+            servo.detach()
+        except Exception:
+            pass
+
+        try:
+            rpwm.close()
+        except Exception:
+            pass
+
+        try:
+            lpwm.close()
+        except Exception:
+            pass
+
+        try:
+            servo.close()
+        except Exception:
+            pass
+
+        print(f"Final corners: {corner_count}")
+        print(f"Final laps: {lap_count}")
+        print("Robot stopped safely.")
+
+
+if __name__ == "__main__":
+    main()
