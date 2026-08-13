@@ -5,7 +5,7 @@
 The full-length video documenting our autonomous vehicle completing its three-lap performance run is hosted externally due to file size constraints. Click the video thumbnail below to view the complete operational execution on YouTube.
 
 <p align="center">
-  <a href="https://youtu.be/DMGllqxFeoI" target="_blank">
+  <a href="https://youtu.be" target="_blank">
     <img src="https://youtube.com" alt="DoB McQueen Open Challenge Performance Run" width="80%" style="border-radius: 8px; border: 1px solid #30363d;">
   </a>
 </p>
