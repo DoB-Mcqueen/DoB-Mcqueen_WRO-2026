@@ -2,7 +2,7 @@
 
 The following photographic log documents our hardware manufacturing iterations, structural assembly phases, and software development testing milestones.
 
-### Team Development Tracking
+## Team Development Tracking
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/924e9820-49a4-4645-b2e6-2edcdb3b7d74" alt="Team Engineering Review Assembly" width="80%" style="border-radius: 8px; border: 1px solid #30363d;">
@@ -13,7 +13,7 @@ This documentation photograph monitors a core vehicle hardware calibration check
 
 ---
 
-### Software Integration Testing Phase
+## Software Integration Testing Phase
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c6e9f6ba-5893-454f-b460-2f0dec759545" alt="Hardware Validation Awaiting Software Compilation" width="45%" style="border-radius: 8px; border: 1px solid #30363d;">
