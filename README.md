@@ -137,7 +137,7 @@ Unlike basic coding challenges, teams are strictly evaluated on their engineerin
 
 # Repository Overview
 
-This repository includes all files, designs, and code for DoB McQueen, our WRO 2025 robot.
+This repository includes all files, designs, and code for DoB McQueen, our WRO 2026 robot.
 
 <table width="100%">
   <tr>
